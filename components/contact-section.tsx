@@ -19,7 +19,7 @@ export function ContactSection() {
                     </p>
                 </div>
 
-                <div className="grid md:grid-cols-2 gap-16 items-start max-w-5xl mx-auto">
+                <div className="grid md:grid-cols-2 gap-8 md:gap-16 items-start max-w-5xl mx-auto">
                     {/* Contact Info */}
                     <div className="space-y-8">
                         <div className="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 shadow-sm transition-colors">
@@ -77,13 +77,18 @@ export function ContactSection() {
                         </div>
                     </div>
 
-                    {/* Quick Form (mailto) */}
+                    {/* Quick Form (via FormSubmit) */}
                     <form
-                        action="mailto:Luzgabrielass.03@gmail.com"
-                        method="post"
-                        encType="text/plain"
-                        className="bg-white dark:bg-slate-900 p-8 rounded-3xl border border-slate-100 dark:border-slate-800 shadow-xl shadow-slate-200/50 dark:shadow-none transition-colors"
+                        action="https://formsubmit.co/Luzgabrielass.03@gmail.com"
+                        method="POST"
+                        className="bg-white dark:bg-slate-900 p-6 md:p-8 rounded-3xl border border-slate-100 dark:border-slate-800 shadow-xl shadow-slate-200/50 dark:shadow-none transition-colors"
                     >
+                        {/* Hidden configs for FormSubmit */}
+                        <input type="hidden" name="_subject" value="Nuevo contacto desde Portafolio" />
+                        <input type="hidden" name="_template" value="table" />
+                        <input type="hidden" name="_captcha" value="false" />
+                        {/* Optional: <input type="hidden" name="_next" value="https://yourdomain.com/thanks" /> */}
+
                         <div className="space-y-4">
                             <div>
                                 <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">{t("contact.form.name")}</label>
