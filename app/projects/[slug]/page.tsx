@@ -85,28 +85,101 @@ export default function ProjectDetail() {
                 </motion.div>
 
                 {/* Gallery */}
-                <div className="grid grid-cols-1 gap-8 md:gap-12">
-                    {uniqueImages.map((img, index) => (
-                        <motion.div
-                            initial={{ opacity: 0, y: 40 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true, margin: "-100px" }}
-                            transition={{ duration: 0.5, delay: index * 0.1 }}
-                            key={index}
-                            className="relative w-full rounded-2xl overflow-hidden bg-slate-50 border border-slate-100 shadow-sm"
-                        >
-                            {/* Using simple <img> for full width, or next/image with responsive generic sizes */}
-                            <Image
-                                src={img}
-                                alt={`${project.title} - View ${index + 1}`}
-                                width={1920}
-                                height={1080}
-                                className="w-full h-auto object-cover"
-                                quality={90}
-                            />
-                        </motion.div>
-                    ))}
-                </div>
+                {/* Gallery Logic */}
+                {slug === 'ristorante-il-palazzo' ? (
+                    /* Unified Grid for Ristorante - All Full Width */
+                    <div className="space-y-12">
+                        {uniqueImages.map((img, index) => (
+                            <motion.div
+                                initial={{ opacity: 0, y: 40 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true, margin: "-100px" }}
+                                transition={{ duration: 0.5, delay: index * 0.1 }}
+                                key={index}
+                                className="relative w-full rounded-2xl overflow-hidden bg-slate-50 border border-slate-100 shadow-sm"
+                            >
+                                <Image
+                                    src={img}
+                                    alt={`${project.title} - View ${index + 1}`}
+                                    width={1920}
+                                    height={1080}
+                                    className="w-full h-auto"
+                                    quality={90}
+                                />
+                            </motion.div>
+                        ))}
+                    </div>
+                ) : (
+                    /* Split Layout for Sektor and others */
+                    (() => {
+                        const webImages = uniqueImages.filter((img, index) => index === 0 || img.toLowerCase().includes("detail") || img.toLowerCase().includes("detalle") || img.toLowerCase().includes("home"));
+                        const mobileImages = uniqueImages.filter(img => !webImages.includes(img));
+
+                        return (
+                            <>
+                                {/* Web Section */}
+                                {webImages.length > 0 && (
+                                    <div className="mb-16">
+                                        <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-8 border-b border-slate-200 dark:border-slate-800 pb-4">
+                                            {t("project.web")}
+                                        </h3>
+                                        <div className="space-y-12">
+                                            {webImages.map((img, index) => (
+                                                <motion.div
+                                                    initial={{ opacity: 0, y: 40 }}
+                                                    whileInView={{ opacity: 1, y: 0 }}
+                                                    viewport={{ once: true, margin: "-100px" }}
+                                                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                                                    key={`web-${index}`}
+                                                    className="relative w-full rounded-2xl overflow-hidden bg-slate-50 border border-slate-100 shadow-sm"
+                                                >
+                                                    <Image
+                                                        src={img}
+                                                        alt={`${project.title} - Web View ${index + 1}`}
+                                                        width={1920}
+                                                        height={1080}
+                                                        className="w-full h-auto"
+                                                        quality={90}
+                                                    />
+                                                </motion.div>
+                                            ))}
+                                        </div>
+                                    </div>
+                                )}
+
+                                {/* Mobile Section */}
+                                {mobileImages.length > 0 && (
+                                    <div>
+                                        <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-8 border-b border-slate-200 dark:border-slate-800 pb-4">
+                                            {t("project.mobile")}
+                                        </h3>
+                                        <div className="flex flex-wrap justify-center gap-8">
+                                            {mobileImages.map((img, index) => (
+                                                <motion.div
+                                                    initial={{ opacity: 0, y: 40 }}
+                                                    whileInView={{ opacity: 1, y: 0 }}
+                                                    viewport={{ once: true, margin: "-100px" }}
+                                                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                                                    key={`mobile-${index}`}
+                                                    className="relative w-full md:w-[calc(33.33%-1.5rem)] rounded-2xl overflow-hidden bg-slate-50 border border-slate-100 shadow-sm"
+                                                >
+                                                    <Image
+                                                        src={img}
+                                                        alt={`${project.title} - Mobile View ${index + 1}`}
+                                                        width={1920}
+                                                        height={1080}
+                                                        className="w-full h-auto"
+                                                        quality={90}
+                                                    />
+                                                </motion.div>
+                                            ))}
+                                        </div>
+                                    </div>
+                                )}
+                            </>
+                        );
+                    })()
+                )}
 
 
 
