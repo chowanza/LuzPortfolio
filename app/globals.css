@@ -13,12 +13,34 @@ html {
   --font-sans: var(--font-inter);
   --font-mono: var(--font-jetbrains-mono);
 
-  --background-image-grid-pattern: linear-gradient(to right, #e2e8f0 1px, transparent 1px), linear-gradient(to bottom, #e2e8f0 1px, transparent 1px);
+  /* Dot Pattern style (Miro-like) */
+  --background-image-grid-pattern: radial-gradient(circle, rgba(79, 70, 229, 0.15) 1.5px, transparent 1.5px);
+}
+
+.dark {
+  --background-image-grid-pattern: radial-gradient(circle, rgba(255, 255, 255, 0.15) 1.5px, transparent 1.5px);
+}
+
+@keyframes breathing {
+  0% {
+    transform: scale(1);
+    text-shadow: 0 0 0px rgba(79, 70, 229, 0);
+    /* primary color */
+  }
+
+  100% {
+    transform: scale(1.02);
+    text-shadow: 0 0 20px rgba(79, 70, 229, 0.4);
+  }
 }
 
 /* Custom Utilities */
 @utility container-custom {
   @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+@utility animate-breathing {
+  animation: breathing 4s ease-in-out infinite alternate !important;
 }
 
 body {
