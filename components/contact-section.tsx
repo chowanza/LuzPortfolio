@@ -8,9 +8,9 @@ export function ContactSection() {
     const { t } = useLanguage();
 
     return (
-        <section id="contact" className="py-20 relative overflow-hidden bg-slate-50 dark:bg-slate-950 transition-colors">
+        <section id="contact" className="py-20 relative overflow-hidden bg-gradient-to-b from-white to-slate-50 dark:from-slate-900 dark:to-slate-950 transition-colors">
             {/* Figma-like Dot Background */}
-            <div className="absolute inset-0 bg-[radial-gradient(circle,rgba(79,70,229,0.25)_2px,transparent_2px)] dark:bg-[radial-gradient(circle,rgba(255,255,255,0.15)_2px,transparent_2px)] bg-[size:24px_24px] [mask-image:linear-gradient(to_bottom,transparent_0%,white_20%,white_60%,transparent_100%)] pointer-events-none" />
+            <div className="absolute inset-0 bg-[radial-gradient(circle,rgba(79,70,229,0.25)_2px,transparent_2px)] dark:bg-[radial-gradient(circle,rgba(255,255,255,0.15)_2px,transparent_2px)] bg-[size:24px_24px] pointer-events-none [-webkit-mask-image:linear-gradient(to_bottom,transparent,black_15%,black_85%,transparent)] [mask-image:linear-gradient(to_bottom,transparent,black_15%,black_85%,transparent)]" />
 
             <div className="container-custom relative z-10">
                 <div className="max-w-4xl mx-auto text-center mb-16">

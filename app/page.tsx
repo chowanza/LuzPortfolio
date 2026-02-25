@@ -33,7 +33,7 @@ export default function Home() {
       {/* Hero Section */}
       <section className="relative pt-20 pb-20 overflow-hidden">
         {/* Figma-like Dot Background for Hero */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle,rgba(79,70,229,0.25)_2px,transparent_2px)] dark:bg-[radial-gradient(circle,rgba(255,255,255,0.15)_2px,transparent_2px)] bg-[size:24px_24px] [mask-image:linear-gradient(to_bottom,white_60%,transparent)] pointer-events-none" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle,rgba(79,70,229,0.25)_2px,transparent_2px)] dark:bg-[radial-gradient(circle,rgba(255,255,255,0.15)_2px,transparent_2px)] bg-[size:24px_24px] pointer-events-none [-webkit-mask-image:linear-gradient(to_bottom,black_60%,transparent)] [mask-image:linear-gradient(to_bottom,black_60%,transparent)]" />
 
         <div className="container-custom relative z-10">
           <motion.div
